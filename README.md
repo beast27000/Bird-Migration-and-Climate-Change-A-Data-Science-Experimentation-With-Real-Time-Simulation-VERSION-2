@@ -1,14 +1,10 @@
-# 🦅 Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation With Real Time Simulation: VERSION 2
+# Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation With Real Time Simulation: VERSION 2
 
-Welcome to **Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation With Real Time Simulation: VERSION 2**, a data science project that simulates bird migration patterns across India while exploring the impact of temperature changes due to climate change.
+Welcome to **Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation With Real Time Simulation: VERSION 2**, a data science project that simulates bird migration patterns across India, exploring the impact of temperature changes due to climate change.
 
-This interactive **Streamlit** application leverages historical bird observation and weather data to generate **real-time migration simulations**, visualized through **dynamic maps, charts, and animations**. With multi-select filters for regions, bird types, and species, users can explore migration trends and download simulation data for further analysis.
+This interactive **Streamlit** application leverages historical bird observation and weather data to generate real-time migration simulations, visualized through dynamic maps, charts, and animations. With multi-select filters for regions, bird types, and species, users can explore migration trends and download simulation data for further analysis.
 
-🔧 **Version 2 Highlights**:
-- Vectorized simulations for performance
-- Realistic temperature ranges (15–35°C)
-- Non-zero bird counts
-- Enhanced user interactivity
+**Version 2** is optimized with vectorized simulations, realistic temperature ranges (15–35°C), non-zero bird counts, and enhanced user interactivity, making it a powerful tool for conservationists, researchers, and data enthusiasts.
 
 ---
 
@@ -25,113 +21,151 @@ This interactive **Streamlit** application leverages historical bird observation
 
 ---
 
-## 📈 Project Overview
+## 📊 Project Overview
 
 This project simulates **30 days** of bird migration across India, using historical data from `bird_weather_merged.csv` (3477 rows) to model how temperature influences bird populations.
 
-### 🔍 Key Features:
+### Key Features:
 - **Interactive Visualizations**: Folium maps, Plotly charts, and animated migration paths.
 - **Multi-Select Filters**: Filter by states (e.g., Delhi, Gujarat), bird categories (e.g., Raptor, Waterfowl), and species (e.g., Indian Pond-Heron, Black Kite).
 - **Optimized Simulation**: Vectorized Pandas/NumPy operations for fast processing.
 - **Realistic Data**: Non-zero bird counts and temperature clipping (15–35°C).
 - **Exportable Data**: Download simulation results as CSV.
 
-> **Pipeline Scripts**:  
-> `data_collection.py`, `data_preprocessing.py`, `data_merging.py`, `data_visualization.py`, and `app.py`.
-
 ---
 
-## 🔍 Features of `app.py`
+## 🧠 Features of `app.py`
+
+The core script, `app.py`, is a Streamlit application that drives the simulation and visualization of bird migration.
 
 ### `load_processed_data()`
-- Loads and cleans `bird_weather_merged.csv`.
-- Ensures non-negative `how_many` values; replaces zeros with random (1–5).
-- Clips temperature values to 15–35°C.
+**Purpose**: Loads and cleans `bird_weather_merged.csv`.
+
+- Reads columns like: `state`, `common_name`, `how_many`, `temperature`, `bird_category`, `latitude_x`, `longitude_x`, `location_name`.
 - Converts `observation_date` to datetime.
+- Ensures non-negative bird counts; replaces zero with random 1–5.
+- Clips temperature to 15–35°C.
+- Prints debug stats.
 
 ---
 
 ### `generate_simulation_data(base_data, start_date, selected_states, selected_categories)`
-- Filters data based on selections.
-- Simulates temperature trends and anomalies.
-- Adjusts bird counts using vectorized operations.
-- Generates 30-day simulation data.
+**Purpose**: Simulates 30 days of migration.
+
+- Filters data by selections.
+- Uses Pandas/NumPy to calculate:
+  - Mean temperatures and bird counts per location.
+  - Adds random noise to simulate seasonal variation.
+- Ensures bird_count ≥ 1.
+- Returns a DataFrame of simulated results.
+- Shows progress via Streamlit bar and logs.
 
 ---
 
 ### `create_interactive_map(data, selected_date, selected_species)`
-- Folium map with:
-  - Circle markers sized by `bird_count`
-  - Heatmap layer
-  - Location/species/temperature popups
+**Purpose**: Visual map rendering using Folium.
+
+- Plots circle markers and heatmap.
+- Includes popups with species, counts, and temperature.
+- Centers map on India.
 
 ---
 
 ### `create_time_series(data, selected_species)`
-- Plotly dual-axis line chart:
-  - Blue: Bird count (sum)
-  - Red (dashed): Temperature (mean)
+**Purpose**: Time series using Plotly.
+
+- Aggregates bird counts and temperature by date.
+- Dual-axis chart: bird count vs. temperature.
 
 ---
 
 ### `create_species_distribution(data, selected_date)`
-- Bar chart of **top 10 bird species** by count using Plotly (Viridis scale)
+**Purpose**: Bar chart of top 10 bird species.
+
+- Groups data and plots with Plotly.
 
 ---
 
 ### `create_location_distribution(data, selected_date, selected_species)`
-- Bar chart of **top 10 locations** for selected species
+**Purpose**: Bar chart of top 10 migration hotspots.
+
+- Filters by species, groups by location.
+- Displays migration-rich areas.
 
 ---
 
 ### `create_temperature_influence_chart(data, selected_species)`
-- Scatter plot showing bird count vs. temperature
-- Optional trendline (OLS)
+**Purpose**: Scatter plot to analyze temperature impact.
+
+- Shows trendline with OLS.
+- Colored by species if “All Species” is selected.
 
 ---
 
 ### `create_migration_animation_data(data, selected_species)`
-- Creates **Timestamped GeoJSON** for animated map
-- Circle size = bird count | Color = temperature
+**Purpose**: Generates data for animated migration.
+
+- Creates timestamped GeoJSON features.
+- Maps bird count and temperature visually.
 
 ---
 
 ### `main()`
-- Builds the complete Streamlit interface:
-  - Sidebar controls (multi-selects, date slider)
-  - Tabs: Map View, Trends, Species Distribution, Animation
-  - Summary stats + CSV download
+**Purpose**: Runs the entire Streamlit app.
+
+- Sidebar controls: region, bird type, species, date.
+- Tabs:
+  - **Map View**
+  - **Trends Analysis**
+  - **Species Distribution**
+  - **Animation**
+- Summary stats and CSV export.
 
 ---
 
 ## 📁 Other Files
 
 ### `data_collection.py`
-- Fetches raw bird and weather data
-- Exports: `bird_data.csv`, `weather_data.csv`
+**Purpose**: Collects raw data.
+
+- Gets bird sightings (from eBird or similar).
+- Retrieves weather for same dates/locations.
+- Outputs: `bird_data.csv`, `weather_data.csv`.
+
+---
 
 ### `data_preprocessing.py`
-- Cleans raw data (nulls, duplicates, outliers)
-- Adds columns: `state`, `bird_category`
-- Outputs: `cleaned_bird_data.csv`, `cleaned_weather_data.csv`
+**Purpose**: Cleans and formats raw data.
 
-### `data_merging.py`
-- Merges bird and weather datasets
-- Outputs: `bird_weather_merged.csv`
+- Handles nulls, duplicates, and formats.
+- Adds derived columns: `state`, `bird_category`.
+- Outputs: `cleaned_bird_data.csv`, `cleaned_weather_data.csv`.
+
+---
+
+### `data_wrangling.py` 
+**Purpose**: Merges bird and weather data.
+
+- Combines cleaned datasets on location and date.
+- Handles nearest-date matches if necessary.
+- Outputs: `bird_weather_merged.csv`.
+
+---
 
 ### `data_visualization.py`
-- Exploratory plots (static)
-- Supports logic building for app.py
+**Purpose**: Explores data visually.
+
+- Histograms, trends, species distributions.
+- Outputs static plots (PNGs) to support simulation design.
 
 ---
 
 ## ⚙️ Installation and Setup
 
-### Clone the Repository:
+### 1. Clone the Repository:
 ```bash
 git clone https://github.com/your-username/Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation.git
 cd Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation
-```
 
 
 <img width="1276" alt="image" src="https://github.com/user-attachments/assets/1617fe79-d23a-4556-a98e-2a57c08dc077" />
