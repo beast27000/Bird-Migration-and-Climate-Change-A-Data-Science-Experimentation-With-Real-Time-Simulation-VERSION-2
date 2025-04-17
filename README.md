@@ -166,7 +166,7 @@ The core script, `app.py`, is a Streamlit application that drives the simulation
 ```bash
 git clone https://github.com/your-username/Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation.git
 cd Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation
-
+```
 
 <img width="1276" alt="image" src="https://github.com/user-attachments/assets/1617fe79-d23a-4556-a98e-2a57c08dc077" />
 
