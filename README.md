@@ -1,0 +1,2 @@
+# Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation-With-Real-Time-Simulation-VERSION-2
+An Streamlit app simulates bird migration in India, modeling climate change via temperature. Features real-time maps, charts, animations with Folium, Plotly, and multi-select filters for regions, bird types, species. Uses Pandas, NumPy for vectorized simulations, with data collection, preprocessing, visualization scripts for historical trends.
