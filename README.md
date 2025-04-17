@@ -2,19 +2,30 @@ Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation With Real Time 
 Welcome to Bird-Migration-and-Climate-Change-A-Data-Science-Experimentation With Real Time Simulation: VERSION 2, a data science project that simulates bird migration patterns across India, exploring the impact of temperature changes due to climate change. This interactive Streamlit application leverages historical bird observation and weather data to generate real-time migration simulations, visualized through dynamic maps, charts, and animations. With multi-select filters for regions, bird types, and species, users can explore migration trends and download simulation data for further analysis.
 This is Version 2, optimized with vectorized simulations, realistic temperature ranges (15–35°C), non-zero bird counts, and enhanced user interactivity, making it a powerful tool for conservationists, researchers, and data enthusiasts.
 
-<img width="283" alt="image" src="https://github.com/user-attachments/assets/4b53c994-8e0a-4888-ab61-8130fe9e2c6d" />
 
 <img width="1276" alt="image" src="https://github.com/user-attachments/assets/1617fe79-d23a-4556-a98e-2a57c08dc077" />
 
+
+
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/c39a0c14-ebe8-4adc-bbac-34688896d7b9" />
+
+
 
 <img width="1275" alt="image" src="https://github.com/user-attachments/assets/9e199ea9-b17f-4258-b374-e304ac4db7be" />
 
+
+
 <img width="1271" alt="image" src="https://github.com/user-attachments/assets/ca4ea9ba-7884-449c-8af2-b2e517cd0c1a" />
+
+
 
 <img width="1274" alt="image" src="https://github.com/user-attachments/assets/b804ee33-af6e-457e-88aa-e9d3c09fc2d6" />
 
+
+
 <img width="725" alt="image" src="https://github.com/user-attachments/assets/68ba4342-5843-4a0d-82e0-4e9dedf3093c" />
+
+
 
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/eb3a85bd-d856-4bec-a683-5a1a15a22029" />
 
